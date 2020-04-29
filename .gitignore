@@ -1,0 +1,7 @@
+# Project exclude paths
+/nacos-dubbo-service1/service1-api/target/
+/nacos-dubbo-service1/service1-server/target/
+/nacos-dubbo-service2/service2-api/target/
+/nacos-dubbo-service2/service2-server/target/
+/nacos-restful-consumer/target/
+/nacos-restful-provider/target/
