@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -70,6 +71,21 @@ public class RestConsumerController {
         //远程调用service1
         String providerResult = service1Api.dubboService1();
         return "consumer dubbo invoke |"+providerResult;
+    }
+
+
+    @Value("${common.name}")
+    private String common_name;
+
+    @Autowired
+    ConfigurableApplicationContext applicationContext;
+
+    @GetMapping(value = "/configs")
+    public String getvalue(){
+//        return common_name;
+        String name =  applicationContext.getEnvironment().getProperty("common.name");
+        String addr = applicationContext.getEnvironment().getProperty("common.addr");
+        return name+"|"+addr;
     }
 
 }
